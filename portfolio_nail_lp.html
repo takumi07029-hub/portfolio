@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLEUR NAIL - 表参道のネイルサロン</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-primary: #d4a5b5;
+      --color-accent: #e8c4d0;
+      --color-dark: #2d2428;
+      --color-light: #fdf8f9;
+      --color-gray: #9a8a90;
+      --color-white: #ffffff;
+      --font-main: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+      --font-sub: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sub);
+      color: var(--color-dark);
+      background: var(--color-white);
+      line-height: 1.8;
+    }
+
+    /* ナビゲーション */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(212, 165, 181, 0.25);
+    }
+
+    .nav-logo {
+      font-family: 'Georgia', serif;
+      font-size: 20px;
+      letter-spacing: 0.25em;
+      color: var(--color-dark);
+    }
+
+    .nav-logo span {
+      color: var(--color-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--color-dark);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--color-primary); }
+
+    .nav-reserve {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 10px 22px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      transition: opacity 0.3s;
+    }
+
+    .nav-reserve:hover { opacity: 0.82; }
+
+    /* ヒーロー */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(150deg, #fdeef3 0%, #f9e0ea 35%, #f0c8d8 70%, #e8b4c8 100%);
+      display: flex;
+      align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-deco {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .hero-deco-1 {
+      width: 500px;
+      height: 500px;
+      top: -150px;
+      right: -100px;
+    }
+
+    .hero-deco-2 {
+      width: 300px;
+      height: 300px;
+      bottom: -80px;
+      left: 40%;
+    }
+
+    .hero-deco-3 {
+      width: 180px;
+      height: 180px;
+      top: 20%;
+      left: 55%;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.7);
+      color: var(--color-primary);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: var(--font-main);
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.5;
+      letter-spacing: 0.08em;
+      color: var(--color-dark);
+      margin-bottom: 24px;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: #b07080;
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: #7a6070;
+      line-height: 2.2;
+      margin-bottom: 40px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 15px 40px;
+      background: var(--color-primary);
+      color: var(--color-white);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      border-radius: 30px;
+      transition: opacity 0.3s;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 14px 36px;
+      border: 1px solid var(--color-primary);
+      color: var(--color-primary);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      border-radius: 30px;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .hero-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 12px;
+      height: 480px;
+    }
+
+    .hero-img {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .hero-img-1 {
+      grid-row: span 2;
+      background: linear-gradient(160deg, #f0c0d0, #d4869a);
+    }
+
+    .hero-img-2 {
+      background: linear-gradient(160deg, #e8d0e0, #c8a0b8);
+    }
+
+    .hero-img-3 {
+      background: linear-gradient(160deg, #f5e0ea, #e0b0c8);
+    }
+
+    /* セクション共通 */
+    section { padding: 96px 48px; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-en {
+      font-family: 'Georgia', serif;
+      font-size: 11px;
+      letter-spacing: 0.45em;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--font-main);
+      font-size: clamp(22px, 3vw, 32px);
+      letter-spacing: 0.1em;
+      color: var(--color-dark);
+    }
+
+    .section-line {
+      width: 36px;
+      height: 2px;
+      background: var(--color-primary);
+      margin: 18px auto 0;
+      border-radius: 2px;
+    }
+
+    /* 特徴セクション */
+    .features {
+      background: var(--color-light);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--color-white);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(212, 165, 181, 0.12);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(212, 165, 181, 0.2);
+    }
+
+    .feature-num {
+      font-family: 'Georgia', serif;
+      font-size: 36px;
+      color: var(--color-accent);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      font-family: var(--font-main);
+      font-size: 17px;
+      color: var(--color-dark);
+      margin-bottom: 14px;
+      letter-spacing: 0.05em;
+    }
+
+    .feature-card p {
+      font-size: 13px;
+      color: var(--color-gray);
+      line-height: 2;
+    }
+
+    /* メニューセクション */
+    .menu-tabs {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .tab-list {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 48px;
+      background: var(--color-light);
+      padding: 6px;
+      border-radius: 30px;
+      width: fit-content;
+      margin: 0 auto 48px;
+    }
+
+    .tab-item {
+      padding: 10px 28px;
+      border-radius: 24px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--color-gray);
+      cursor: default;
+    }
+
+    .tab-item.active {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .menu-card {
+      border: 1px solid #f0dde5;
+      border-radius: 12px;
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: border-color 0.3s;
+    }
+
+    .menu-card:hover {
+      border-color: var(--color-primary);
+    }
+
+    .menu-thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .menu-thumb-1 { background: linear-gradient(135deg, #f5c6d4, #e898b0); }
+    .menu-thumb-2 { background: linear-gradient(135deg, #fde8c0, #f0c070); }
+    .menu-thumb-3 { background: linear-gradient(135deg, #c8d8f5, #90a8e8); }
+    .menu-thumb-4 { background: linear-gradient(135deg, #c8f0d8, #80c8a0); }
+    .menu-thumb-5 { background: linear-gradient(135deg, #f0d4f5, #c880d8); }
+    .menu-thumb-6 { background: linear-gradient(135deg, #f5d4c8, #e09870); }
+
+    .menu-info h3 {
+      font-family: var(--font-main);
+      font-size: 16px;
+      color: var(--color-dark);
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .menu-info p {
+      font-size: 12px;
+      color: var(--color-gray);
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+
+    .menu-price {
+      font-family: 'Georgia', serif;
+      font-size: 15px;
+      color: var(--color-primary);
+    }
+
+    /* ギャラリー */
+    .gallery {
+      background: var(--color-light);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 180px);
+      gap: 8px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .gallery-item:nth-child(1) {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #f5c8d8, #e090a8);
+    }
+
+    .gallery-item:nth-child(2) { background: linear-gradient(135deg, #fde0c0, #f0b070); }
+    .gallery-item:nth-child(3) { background: linear-gradient(135deg, #d0e8f8, #90b8e8); }
+    .gallery-item:nth-child(4) { background: linear-gradient(135deg, #d8f0e0, #90c8a8); }
+    .gallery-item:nth-child(5) {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #e8d0f8, #b888d8);
+    }
+    .gallery-item:nth-child(6) { background: linear-gradient(135deg, #f8e0d0, #e8a880); }
+    .gallery-item:nth-child(7) { background: linear-gradient(135deg, #f8d8e8, #e098b8); }
+
+    .gallery-label {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--color-gray);
+      letter-spacing: 0.1em;
+    }
+
+    /* 料金 */
+    .price-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .price-block {
+      margin-bottom: 40px;
+    }
+
+    .price-block-title {
+      font-family: var(--font-main);
+      font-size: 16px;
+      color: var(--color-primary);
+      padding: 10px 20px;
+      background: #fdf0f4;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 8px;
+      border-bottom: 1px solid #f5e8ed;
+      font-size: 14px;
+    }
+
+    .price-row:last-child { border-bottom: none; }
+
+    .price-name { color: var(--color-dark); }
+
+    .price-amount {
+      font-family: 'Georgia', serif;
+      font-size: 15px;
+      color: var(--color-primary);
+    }
+
+    .price-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-gray);
+      margin-top: 24px;
+      line-height: 2;
+    }
+
+    /* こだわり */
+    .about {
+      background: var(--color-light);
+    }
+
+    .about-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      font-family: var(--font-main);
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .about-text p {
+      font-size: 13px;
+      color: var(--color-gray);
+      line-height: 2.3;
+      margin-bottom: 16px;
+    }
+
+    .about-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #fdf0f4;
+      color: var(--color-primary);
+      font-size: 12px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(150deg, #f5c8d8 0%, #d4869a 100%);
+      border-radius: 20px;
+    }
+
+    /* アクセス */
+    .access-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .access-map {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #e8d0d8, #c8a0b0);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+    }
+
+    .access-info h3 {
+      font-family: var(--font-main);
+      font-size: 20px;
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
+    }
+
+    .access-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 18px;
+      font-size: 14px;
+    }
+
+    .access-label {
+      color: var(--color-primary);
+      min-width: 64px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      padding-top: 3px;
+    }
+
+    .access-val {
+      color: var(--color-dark);
+      line-height: 1.9;
+    }
+
+    /* SNS */
+    .sns {
+      background: var(--color-light);
+      text-align: center;
+    }
+
+    .sns p {
+      font-size: 14px;
+      color: var(--color-gray);
+      margin-bottom: 32px;
+    }
+
+    .sns-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .sns-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      transition: opacity 0.3s;
+    }
+
+    .sns-instagram {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: var(--color-white);
+    }
+
+    .sns-line {
+      background: #06c755;
+      color: var(--color-white);
+    }
+
+    .sns-btn:hover { opacity: 0.85; }
+
+    /* 予約 */
+    .reserve {
+      background: linear-gradient(150deg, #3d2030 0%, #5a2840 100%);
+      color: var(--color-white);
+      text-align: center;
+    }
+
+    .reserve .section-title { color: var(--color-white); }
+    .reserve .section-en { color: var(--color-accent); }
+    .reserve .section-line { background: var(--color-accent); }
+
+    .reserve-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      line-height: 2.2;
+    }
+
+    .reserve-btns {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .reserve-btn {
+      display: inline-block;
+      padding: 16px 48px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      transition: opacity 0.3s;
+    }
+
+    .reserve-btn-main {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .reserve-btn-sub {
+      border: 1px solid rgba(255,255,255,0.4);
+      color: var(--color-white);
+    }
+
+    .reserve-btn:hover { opacity: 0.82; }
+
+    /* フッター */
+    footer {
+      background: #1e0f18;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 28px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      section { padding: 72px 20px; }
+
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+      .gallery-item { grid-column: span 1 !important; height: 140px; }
+      .about-inner { grid-template-columns: 1fr; }
+      .access-inner { grid-template-columns: 1fr; }
+      .sns-links { flex-direction: column; align-items: center; }
+      .reserve-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <nav>
+    <div class="nav-logo">FLEUR <span>NAIL</span></div>
+    <ul class="nav-links">
+      <li><a href="#features">特徴</a></li>
+      <li><a href="#menu">メニュー</a></li>
+      <li><a href="#gallery">ギャラリー</a></li>
+      <li><a href="#price">料金</a></li>
+      <li><a href="#access">アクセス</a></li>
+    </ul>
+    <a href="#reserve" class="nav-reserve">ご予約</a>
+  </nav>
+
+  <!-- ヒーロー -->
+  <section class="hero" id="top">
+    <div class="hero-deco hero-deco-1"></div>
+    <div class="hero-deco hero-deco-2"></div>
+    <div class="hero-deco hero-deco-3"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <span class="hero-tag">Nail Salon in Omotesando</span>
+        <h1 class="hero-title">
+          指先から広がる、<br>
+          <em>あなただけの</em><br>
+          物語。
+        </h1>
+        <p class="hero-desc">
+          表参道の隠れ家ネイルサロン「FLEUR NAIL」。<br>
+          丁寧なカウンセリングと高い技術で、<br>
+          世界にひとつだけのネイルをお届けします。
+        </p>
+        <div class="hero-btns">
+          <a href="#reserve" class="btn-primary">無料カウンセリング予約</a>
+          <a href="#gallery" class="btn-outline">デザインを見る</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-img hero-img-1"></div>
+        <div class="hero-img hero-img-2"></div>
+        <div class="hero-img hero-img-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 特徴 -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <p class="section-en">Features</p>
+      <h2 class="section-title">FLEUR NAILが選ばれる理由</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <h3>完全個室・完全予約制</h3>
+        <p>他のお客様を気にせず、リラックスしてお過ごしいただける完全個室。プライベートな空間でゆったりとした時間を。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <h3>経験10年以上の技術</h3>
+        <p>表参道・銀座のトップサロンで経験を積んだネイリストが担当。繊細なアートも丁寧に仕上げます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <h3>爪・肌に優しい高品質ジェル</h3>
+        <p>低刺激・ノンサンディングのジェルを使用。傷んだ爪の方や敏感肌の方でも安心してお越しいただけます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- メニュー -->
+  <section id="menu">
+    <div class="section-header">
+      <p class="section-en">Menu</p>
+      <h2 class="section-title">メニュー</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="menu-tabs">
+      <div class="tab-list">
+        <div class="tab-item active">ジェルネイル</div>
+        <div class="tab-item">ケア・オフ</div>
+        <div class="tab-item">オプション</div>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-thumb menu-thumb-1"></div>
+          <div class="menu-info">
+            <h3>ワンカラー</h3>
+            <p>単色で洗練された印象に。短時間で仕上がるのでお急ぎの方にも人気です。</p>
+            <div class="menu-price">¥6,600〜</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb menu-thumb-2"></div>
+          <div class="menu-info">
+            <h3>フレンチネイル</h3>
+            <p>大人の上品さを演出するフレンチ。グラデーション・ニュアンスフレンチも対応。</p>
+            <div class="menu-price">¥8,800〜</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb menu-thumb-3"></div>
+          <div class="menu-info">
+            <h3>デザインネイル</h3>
+            <p>フラワー・マーブル・ニュアンスなどトレンドデザインをご提案。お気に入りの1枚をお持ちください。</p>
+            <div class="menu-price">¥11,000〜</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb menu-thumb-4"></div>
+          <div class="menu-info">
+            <h3>スカルプチュア</h3>
+            <p>自爪が短い方・折れた方に。長さ・形・デザインすべてオーダーメイドで対応。</p>
+            <div class="menu-price">¥16,500〜</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb menu-thumb-5"></div>
+          <div class="menu-info">
+            <h3>ブライダルネイル</h3>
+            <p>特別な1日を彩る特別なネイル。事前のリハーサル施術もご相談いただけます。</p>
+            <div class="menu-price">¥18,700〜</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb menu-thumb-6"></div>
+          <div class="menu-info">
+            <h3>フットネイル</h3>
+            <p>足元のケアからデザインまでトータルサポート。角質ケアとセットも人気。</p>
+            <div class="menu-price">¥7,700〜</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ギャラリー -->
+  <section class="gallery" id="gallery">
+    <div class="section-header">
+      <p class="section-en">Gallery</p>
+      <h2 class="section-title">施術ギャラリー</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+    </div>
+    <p class="gallery-label">最新のInstagramギャラリーは @fleur_nail_omotesando をご覧ください</p>
+  </section>
+
+  <!-- 料金 -->
+  <section id="price">
+    <div class="section-header">
+      <p class="section-en">Price</p>
+      <h2 class="section-title">料金表</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="price-inner">
+      <div class="price-block">
+        <div class="price-block-title">ジェルネイル</div>
+        <div class="price-row">
+          <span class="price-name">ワンカラー（手・10本）</span>
+          <span class="price-amount">¥6,600</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">フレンチ・グラデーション</span>
+          <span class="price-amount">¥8,800〜</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">デザインネイル</span>
+          <span class="price-amount">¥11,000〜</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">スカルプチュア（10本）</span>
+          <span class="price-amount">¥16,500〜</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">ブライダルネイル</span>
+          <span class="price-amount">¥18,700〜</span>
+        </div>
+      </div>
+      <div class="price-block">
+        <div class="price-block-title">フットネイル</div>
+        <div class="price-row">
+          <span class="price-name">フットワンカラー（10本）</span>
+          <span class="price-amount">¥7,700</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">フットデザイン</span>
+          <span class="price-amount">¥9,900〜</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">角質ケア＋カラー</span>
+          <span class="price-amount">¥11,000〜</span>
+        </div>
+      </div>
+      <div class="price-block">
+        <div class="price-block-title">ケア・オフ</div>
+        <div class="price-row">
+          <span class="price-name">ジェルオフのみ</span>
+          <span class="price-amount">¥3,300</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">ネイルケア（保湿・甘皮処理）</span>
+          <span class="price-amount">¥3,300</span>
+        </div>
+      </div>
+      <p class="price-note">
+        ※表示価格はすべて税込みです。<br>
+        ※デザインの複雑さや長さにより変動します。詳しくはカウンセリング時にお見積りします。
+      </p>
+    </div>
+  </section>
+
+  <!-- こだわり -->
+  <section class="about" id="about">
+    <div class="section-header">
+      <p class="section-en">About</p>
+      <h2 class="section-title">私たちのこだわり</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-inner">
+      <div class="about-text">
+        <h3>爪を傷めない、<br>続けられるネイルを。</h3>
+        <p>
+          FLEUR NAILでは、ノンサンディングジェルを中心に、爪への負担を最小限に抑えた施術を心がけています。
+          「ネイルが好きなのに、爪が痛んで続けられない」というお悩みをよく耳にします。
+        </p>
+        <p>
+          正しいケアと高品質な材料の選定により、ネイルを長く楽しんでいただける爪づくりをサポートします。初めてジェルネイルをされる方も、ぜひお気軽にご相談ください。
+        </p>
+        <div class="about-badges">
+          <span class="badge">ノンサンディングジェル</span>
+          <span class="badge">パラジェル対応</span>
+          <span class="badge">低アレルゲン素材使用</span>
+          <span class="badge">爪育成ケア</span>
+        </div>
+      </div>
+      <div class="about-img"></div>
+    </div>
+  </section>
+
+  <!-- アクセス -->
+  <section id="access">
+    <div class="section-header">
+      <p class="section-en">Access</p>
+      <h2 class="section-title">アクセス</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="access-inner">
+      <div class="access-map">MAP</div>
+      <div class="access-info">
+        <h3>FLEUR NAIL</h3>
+        <div class="access-row">
+          <span class="access-label">住所</span>
+          <span class="access-val">東京都港区北青山3-4-5<br>フルールビル 3F</span>
+        </div>
+        <div class="access-row">
+          <span class="access-label">アクセス</span>
+          <span class="access-val">東京メトロ銀座線・千代田線・半蔵門線<br>「表参道駅」A2出口 徒歩4分</span>
+        </div>
+        <div class="access-row">
+          <span class="access-label">TEL</span>
+          <span class="access-val">03-XXXX-XXXX</span>
+        </div>
+        <div class="access-row">
+          <span class="access-label">営業時間</span>
+          <span class="access-val">10:00〜19:00（最終受付 17:00）</span>
+        </div>
+        <div class="access-row">
+          <span class="access-label">定休日</span>
+          <span class="access-val">月曜日・第3日曜日</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SNS -->
+  <section class="sns">
+    <div class="section-header">
+      <p class="section-en">SNS</p>
+      <h2 class="section-title">SNS</h2>
+      <div class="section-line"></div>
+    </div>
+    <p>最新のデザインはInstagramで毎日更新中。<br>LINEからもお気軽にご予約・ご相談いただけます。</p>
+    <div class="sns-links">
+      <a href="#" class="sns-btn sns-instagram">Instagram @fleur_nail_omotesando</a>
+      <a href="#" class="sns-btn sns-line">LINE で予約する</a>
+    </div>
+  </section>
+
+  <!-- 予約 -->
+  <section class="reserve" id="reserve">
+    <div class="section-header">
+      <p class="section-en">Reservation</p>
+      <h2 class="section-title">ご予約・お問い合わせ</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="reserve-desc">
+      初めてのお客様も大歓迎。無料カウンセリングを行っておりますので、<br>
+      まずはお気軽にご連絡ください。当日・前日のご予約もお電話にてご相談可能です。
+    </p>
+    <div class="reserve-btns">
+      <a href="#" class="reserve-btn reserve-btn-main">オンラインで予約する</a>
+      <a href="tel:03-XXXX-XXXX" class="reserve-btn reserve-btn-sub">お電話で予約する</a>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <p>&copy; 2024 FLEUR NAIL All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

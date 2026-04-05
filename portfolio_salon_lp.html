@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMIERE HAIR - 自由が丘の美容院</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-primary: #c9a96e;
+      --color-dark: #2c2c2c;
+      --color-light: #faf8f5;
+      --color-gray: #888;
+      --color-white: #ffffff;
+      --font-main: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+      --font-sub: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sub);
+      color: var(--color-dark);
+      background: var(--color-white);
+      line-height: 1.8;
+    }
+
+    /* ナビゲーション */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+    }
+
+    .nav-logo {
+      font-family: var(--font-main);
+      font-size: 22px;
+      letter-spacing: 0.15em;
+      color: var(--color-dark);
+    }
+
+    .nav-logo span {
+      color: var(--color-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--color-dark);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-primary);
+    }
+
+    .nav-reserve {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 10px 24px;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      transition: opacity 0.3s;
+    }
+
+    .nav-reserve:hover {
+      opacity: 0.85;
+    }
+
+    /* ヒーローセクション */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg, #f5ede0 0%, #ede0cc 40%, #d4b896 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(201, 169, 110, 0.12);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: rgba(201, 169, 110, 0.08);
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 1;
+    }
+
+    .hero-en {
+      font-family: 'Georgia', serif;
+      font-size: 13px;
+      letter-spacing: 0.4em;
+      color: var(--color-primary);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: var(--font-main);
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.4;
+      letter-spacing: 0.1em;
+      color: var(--color-dark);
+      margin-bottom: 24px;
+    }
+
+    .hero-title span {
+      color: var(--color-primary);
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: #666;
+      letter-spacing: 0.05em;
+      margin-bottom: 48px;
+      line-height: 2;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      padding: 16px 48px;
+      border: 1px solid var(--color-primary);
+      color: var(--color-primary);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      transition: all 0.3s;
+    }
+
+    .hero-btn:hover {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-gray);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--color-primary), transparent);
+      animation: scrollLine 1.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* セクション共通 */
+    section {
+      padding: 100px 48px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-en {
+      font-family: 'Georgia', serif;
+      font-size: 12px;
+      letter-spacing: 0.4em;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-main);
+      font-size: clamp(24px, 3vw, 36px);
+      letter-spacing: 0.1em;
+      color: var(--color-dark);
+    }
+
+    .section-line {
+      width: 40px;
+      height: 1px;
+      background: var(--color-primary);
+      margin: 20px auto 0;
+    }
+
+    /* コンセプトセクション */
+    .concept {
+      background: var(--color-light);
+    }
+
+    .concept-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .concept-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(160deg, #e8d5c0 0%, #c9a96e 100%);
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .concept-img::after {
+      content: 'LUMIERE';
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      font-family: 'Georgia', serif;
+      font-size: 28px;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .concept-text h3 {
+      font-family: var(--font-main);
+      font-size: 22px;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .concept-text p {
+      color: #666;
+      font-size: 14px;
+      line-height: 2.2;
+      margin-bottom: 16px;
+    }
+
+    /* メニューセクション */
+    .menu {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .menu-item {
+      background: var(--color-light);
+      padding: 40px 32px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .menu-item:hover {
+      background: #f0e8d8;
+    }
+
+    .menu-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--color-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 20px;
+    }
+
+    .menu-item h3 {
+      font-family: var(--font-main);
+      font-size: 18px;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      color: var(--color-dark);
+    }
+
+    .menu-item p {
+      font-size: 13px;
+      color: var(--color-gray);
+      line-height: 1.9;
+    }
+
+    /* 料金セクション */
+    .price {
+      background: var(--color-light);
+    }
+
+    .price-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .price-category {
+      margin-bottom: 48px;
+    }
+
+    .price-category h3 {
+      font-family: var(--font-main);
+      font-size: 18px;
+      color: var(--color-primary);
+      border-bottom: 1px solid var(--color-primary);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      letter-spacing: 0.1em;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #ece6dc;
+      font-size: 14px;
+    }
+
+    .price-name {
+      color: var(--color-dark);
+    }
+
+    .price-amount {
+      color: var(--color-primary);
+      font-family: 'Georgia', serif;
+      font-size: 16px;
+      letter-spacing: 0.05em;
+    }
+
+    .price-note {
+      font-size: 12px;
+      color: var(--color-gray);
+      margin-top: 16px;
+      text-align: right;
+    }
+
+    /* スタッフセクション */
+    .staff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .staff-card {
+      text-align: center;
+    }
+
+    .staff-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e8d5c0, #c9a96e);
+      margin-bottom: 20px;
+    }
+
+    .staff-name {
+      font-family: var(--font-main);
+      font-size: 18px;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .staff-role {
+      font-size: 12px;
+      color: var(--color-primary);
+      letter-spacing: 0.15em;
+      margin-bottom: 12px;
+    }
+
+    .staff-desc {
+      font-size: 13px;
+      color: var(--color-gray);
+      line-height: 1.9;
+    }
+
+    /* アクセスセクション */
+    .access {
+      background: var(--color-light);
+    }
+
+    .access-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .access-map {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #d4c5b0, #b8a080);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+    }
+
+    .access-info h3 {
+      font-family: var(--font-main);
+      font-size: 22px;
+      letter-spacing: 0.1em;
+      margin-bottom: 32px;
+      color: var(--color-dark);
+    }
+
+    .access-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .access-label {
+      color: var(--color-primary);
+      min-width: 60px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      padding-top: 2px;
+    }
+
+    .access-val {
+      color: var(--color-dark);
+      line-height: 1.9;
+    }
+
+    /* 予約セクション */
+    .reserve {
+      background: linear-gradient(135deg, #2c2c2c 0%, #3d3325 100%);
+      color: var(--color-white);
+      text-align: center;
+    }
+
+    .reserve .section-title {
+      color: var(--color-white);
+    }
+
+    .reserve p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      line-height: 2;
+    }
+
+    .reserve-btn {
+      display: inline-block;
+      padding: 18px 64px;
+      background: var(--color-primary);
+      color: var(--color-white);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      transition: opacity 0.3s;
+      border-radius: 2px;
+    }
+
+    .reserve-btn:hover {
+      opacity: 0.85;
+    }
+
+    /* フッター */
+    footer {
+      background: #1a1a1a;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 72px 24px;
+      }
+
+      .concept-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .staff-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+      }
+
+      .access-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <nav>
+    <div class="nav-logo">LUMIERE <span>HAIR</span></div>
+    <ul class="nav-links">
+      <li><a href="#concept">コンセプト</a></li>
+      <li><a href="#menu">メニュー</a></li>
+      <li><a href="#price">料金</a></li>
+      <li><a href="#staff">スタッフ</a></li>
+      <li><a href="#access">アクセス</a></li>
+    </ul>
+    <a href="#reserve" class="nav-reserve">ご予約</a>
+  </nav>
+
+  <!-- ヒーロー -->
+  <section class="hero" id="top">
+    <div class="hero-content">
+      <p class="hero-en">Hair Salon in Jiyugaoka</p>
+      <h1 class="hero-title">あなたらしさを、<br><span>光</span>に変える場所。</h1>
+      <p class="hero-desc">
+        一人ひとりの骨格・髪質・ライフスタイルに向き合い、<br>
+        長く愛せるヘアスタイルをご提案します。
+      </p>
+      <a href="#reserve" class="hero-btn">ご予約はこちら</a>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- コンセプト -->
+  <section class="concept" id="concept">
+    <div class="section-header">
+      <p class="section-en">Concept</p>
+      <h2 class="section-title">私たちのこだわり</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="concept-inner">
+      <div class="concept-img"></div>
+      <div class="concept-text">
+        <h3>「今日の自分」が<br>好きになれる美容室</h3>
+        <p>
+          LUMIEREは、フランス語で「光」を意味します。
+          鏡を見るたびに前向きな気持ちになれる、そんなヘアスタイルをお届けすることが私たちの使命です。
+        </p>
+        <p>
+          カウンセリングを大切にし、お客様の普段のスタイリングのしやすさや、なりたいイメージをじっくりお伺いします。トレンドを取り入れながらも、その方本来の魅力を引き出すデザインを心がけています。
+        </p>
+        <p>
+          使用する薬剤はすべて低刺激・高品質なものを厳選。髪と地肌に優しいサロンを目指しています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- メニュー -->
+  <section id="menu">
+    <div class="section-header">
+      <p class="section-en">Menu</p>
+      <h2 class="section-title">メニュー</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-icon">✂</div>
+        <h3>カット</h3>
+        <p>骨格診断をもとに、顔まわりのバランスを整える似合わせカット。</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon">◎</div>
+        <h3>カラー</h3>
+        <p>イルミナカラー・アディクシーカラーなど、透明感・艶感を重視したカラーリング。</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon">〜</div>
+        <h3>パーマ</h3>
+        <p>デジタルパーマ・水パーマなど。ダメージレスで自然なウェーブを実現。</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon">◇</div>
+        <h3>トリートメント</h3>
+        <p>ケラチントリートメントで、芯から補修。ツヤサラの美髪へ導きます。</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon">★</div>
+        <h3>縮毛矯正</h3>
+        <p>くせ毛・うねりを自然にまっすぐに。柔らかい仕上がりにこだわります。</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon">♡</div>
+        <h3>ヘッドスパ</h3>
+        <p>頭皮環境を整えながら、極上のリラクゼーションタイムをご提供。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 料金 -->
+  <section class="price" id="price">
+    <div class="section-header">
+      <p class="section-en">Price</p>
+      <h2 class="section-title">料金表</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="price-inner">
+      <div class="price-category">
+        <h3>カット</h3>
+        <div class="price-row">
+          <span class="price-name">カット（シャンプー・ブロー込み）</span>
+          <span class="price-amount">¥6,600〜</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">前髪カットのみ</span>
+          <span class="price-amount">¥1,100</span>
+        </div>
+      </div>
+      <div class="price-category">
+        <h3>カラー</h3>
+        <div class="price-row">
+          <span class="price-name">フルカラー</span>
+          <span class="price-amount">¥8,800〜</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">リタッチカラー</span>
+          <span class="price-amount">¥6,600〜</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">ハイライト・バレイヤージュ</span>
+          <span class="price-amount">¥13,200〜</span>
+        </div>
+      </div>
+      <div class="price-category">
+        <h3>パーマ・縮毛</h3>
+        <div class="price-row">
+          <span class="price-name">デジタルパーマ</span>
+          <span class="price-amount">¥14,300〜</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">縮毛矯正</span>
+          <span class="price-amount">¥16,500〜</span>
+        </div>
+      </div>
+      <p class="price-note">※表示価格はすべて税込みです。髪の長さ・状態により変動する場合があります。</p>
+    </div>
+  </section>
+
+  <!-- スタッフ -->
+  <section id="staff">
+    <div class="section-header">
+      <p class="section-en">Staff</p>
+      <h2 class="section-title">スタッフ紹介</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="staff-grid">
+      <div class="staff-card">
+        <div class="staff-photo"></div>
+        <div class="staff-name">中村 美咲</div>
+        <div class="staff-role">DIRECTOR</div>
+        <p class="staff-desc">表参道の人気サロンで10年のキャリアを経てオープン。カラーと縮毛矯正が得意。</p>
+      </div>
+      <div class="staff-card">
+        <div class="staff-photo"></div>
+        <div class="staff-name">田中 彩花</div>
+        <div class="staff-role">TOP STYLIST</div>
+        <p class="staff-desc">ハイライト・バレイヤージュ専門の技術を持つカラーリスト。外国人風カラーが人気。</p>
+      </div>
+      <div class="staff-card">
+        <div class="staff-photo"></div>
+        <div class="staff-name">山本 愛</div>
+        <div class="staff-role">STYLIST</div>
+        <p class="staff-desc">骨格診断士の資格保持。似合わせカット・パーマを得意とし、自然なスタイルが好評。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- アクセス -->
+  <section class="access" id="access">
+    <div class="section-header">
+      <p class="section-en">Access</p>
+      <h2 class="section-title">アクセス</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="access-inner">
+      <div class="access-map">MAP</div>
+      <div class="access-info">
+        <h3>LUMIERE HAIR</h3>
+        <div class="access-row">
+          <span class="access-label">住所</span>
+          <span class="access-val">東京都目黒区自由が丘1-2-3<br>ルミエールビル 2F</span>
+        </div>
+        <div class="access-row">
+          <span class="access-label">アクセス</span>
+          <span class="access-val">東急東横線・大井町線<br>「自由が丘駅」正面口 徒歩3分</span>
+        </div>
+        <div class="access-row">
+          <span class="access-label">TEL</span>
+          <span class="access-val">03-XXXX-XXXX</span>
+        </div>
+        <div class="access-row">
+          <span class="access-label">営業時間</span>
+          <span class="access-val">平日 10:00〜20:00<br>土日祝 9:00〜19:00</span>
+        </div>
+        <div class="access-row">
+          <span class="access-label">定休日</span>
+          <span class="access-val">毎週火曜日</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 予約 -->
+  <section class="reserve" id="reserve">
+    <div class="section-header">
+      <p class="section-en">Reservation</p>
+      <h2 class="section-title">ご予約</h2>
+      <div class="section-line"></div>
+    </div>
+    <p>
+      初めてのお客様も大歓迎です。<br>
+      お電話またはオンライン予約フォームよりお気軽にご連絡ください。
+    </p>
+    <a href="tel:03-XXXX-XXXX" class="reserve-btn">オンライン予約はこちら</a>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <p>&copy; 2024 LUMIERE HAIR All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
